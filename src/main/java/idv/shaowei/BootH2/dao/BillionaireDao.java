@@ -43,6 +43,7 @@ public class BillionaireDao implements Dao<Billionaire> {
 	public void update(int id, Map<String, String> params) throws Exception {
 		String updStr = "UPDATE billionaire SET ";
 		updStr += params.entrySet().stream().filter(entry -> entry.getValue() != null).map(entry -> entry.getKey() + "=" + entry.getValue()).collect(Collectors.joining(","));
+		updStr += " WHERE ID = " + id;
 		jdbcTemplate.update(updStr);
 	}
 
